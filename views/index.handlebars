@@ -1,0 +1,31 @@
+<main>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="news">
+                {{#each result}}
+                    <div class="article container well">
+                        <div class="row">
+                            <div class="col-md-9 article-info">
+                                <div class="article-name">
+                                    <a href="{{link}}"><h4>{{title}}</h4></a>
+                                    {{#if author}}
+                                        <h4><small>By {{author}}</small></h4>
+                                    {{/if}}
+                                    <p>{{blurb}}</p>
+                                </div>
+                                <div class="comment-link">
+                                    <a href="/{{articleID}}">Comments</a>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                {{#if image}}
+                                    <a href="{{link}}"><img src="{{image}}" class="center-block article-image"></a>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</main>

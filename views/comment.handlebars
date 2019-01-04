@@ -1,0 +1,50 @@
+<main>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="response-section">
+                <div class="article-title container">
+                    {{#each commentData}}
+                        {{#if articleTitle}}
+                            <h4>
+                                Comments on
+                                <a href="{{link}}">{{articleTitle}}</a>
+                            </h4>
+                        {{/if}}
+                    {{/each}}
+                </div>
+                <div class="responses">
+                    {{#each commentData}}
+                        {{#if author}}
+                        <div class="response contianer well">
+                            <div class="row">
+                                <div class="col-md-12 article-info">
+                                    <h4><small>By {{author}} at {{timestamp}}</small></h4>
+                                    <p>{{text}}</p>
+                                    <a href="/api/comment/{{articleID}}/{{id}}">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                    {{/each}}
+                </div>
+                <div class="response-add-form container well">
+                    {{#each commentData}}
+                        {{#if articleTitle}}
+                            <form class="add-form" action="/api/comment/{{articleID}}" method="POST">
+                                <div class="form-group">
+                                    <label for="author">Name: </label>
+                                    <input type="text" id="author" name="author" placeholder="Your name" class="form-control" maxlength="30">
+                                </div>
+                                <div class="form-group">
+                                    <label for="text">Comment: </label>
+                                    <input type="text" id="text" name="text" placeholder="Write a comment..." class="form-control" maxlength="130">
+                                </div>
+                                <button type="submit" class="btn btn-danger">Post Comment!</button>
+                            </form>
+                        {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
