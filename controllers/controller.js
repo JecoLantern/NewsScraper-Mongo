@@ -2,7 +2,7 @@
 var express = require("express");
 var request = require("request");
 var cheerio = require("cheerio");
-var mongoose = require("mongoose");
+var axios = require("axios");
 
 // Express Router
 var router = express.Router();
@@ -22,7 +22,7 @@ router.get('/', function(req, res) {
             resultData.push({
                 title: article.title,
                 link: article.link,
-                blurb: article.blurb,
+                // blurb: article.blurb,
                 author: article.author,
                 image: article.image,
                 articleID: article.articleID
@@ -76,22 +76,23 @@ router.get('/api/news', function(req, res) {
 
         // find div
         //
-        $('.m-block').each(function(i, element) {
+        $('div.c-compact-river__entry').each(function(i, element) {
 
             // Grab Title
-            var title = $(element).children('.m-block__body').children('header').children('h3').text();
+            var title = $(element).children('.c-entry-box--compact.c-entry-box--compact--article').children('.c-entry-box--compact__body').children('h2').text();
+            // console.log(title);
 
             // Grab article URL
-            var link = $(element).children('.m-block__body').children('header').children('h3').children('a').attr('href');
+            var link = $(element).children('.c-entry-box--compact.c-entry-box--compact--article').children('a').attr('href');
 
             // Grab article blurb
-            var blurb = $(element).children('.m-block__body').children('.m-block__body__blurb').text();
+            // var blurb = $(element).children('.m-block__body').children('.m-block__body__blurb').text();
 
             // Create author
             var author = [];
 
             // Grab section
-            var authorsObject = $(element).children('.m-block__body').children('.m-block__body__byline').children('a');
+            var authorsObject = $(element).children('.c-entry-box--compact.c-entry-box--compact--article').children('.c-entry-box--compact__body').children('.c-byline').children('.c-byline__item').children('a');
 
             // sets text to author var if only one item
             if (authorsObject.length === 1) {
@@ -107,16 +108,19 @@ router.get('/api/news', function(req, res) {
             }
 
             // Grab image URL
-            var image = $(element).children('.m-block__image').children('a').children('img').data('original');
+            var imageRaw = $(element).children('.c-entry-box--compact.c-entry-box--compact--article').children('a').children('.c-entry-box--compact__image').find('noscript').text();
+            var image = imageRaw.replace(/[<="">]/gi, '').replace('img alt src', '')
+            // console.log(image)
 
             // Grab article ID
-            var articleID = $(element).children('.m-block__body').children('.m-block__body__byline').children('span').data('remote-admin-entry-id');
+            var articleID = $(element).children('.c-entry-box--compact.c-entry-box--compact--article').children('.c-entry-box--compact__body').children('.c-byline').children('a').data('entry-admin');
+            // console.log(articleID)
 
             // Save results in object then save to MongoDB
             var newArticle = {
                 title: title,
                 link: link,
-                blurb: blurb,
+                // blurb: blurb,
                 author: author,
                 image: image,
                 articleID: articleID
@@ -132,7 +136,7 @@ router.get('/api/news', function(req, res) {
                 }
             });
         });
-
+        // res.send("Scrape Complete!")
         res.redirect('/');
 
     });
