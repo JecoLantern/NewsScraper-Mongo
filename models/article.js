@@ -7,10 +7,6 @@ var articleSchema = new Schema({
         type: String,
         trim: true
     },
-    // blurb: {
-    //     type: String,
-    //     trim: true
-    // },
     link: {
         type: String,
         trim: true
