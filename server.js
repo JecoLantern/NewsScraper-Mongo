@@ -45,8 +45,12 @@ var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongonews'
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Listen
-mongoose.connect(connectionString).then(function() {
-    app.listen(PORT, function() {
-        console.log('Listening on Port ' + PORT);
-    });
+// mongoose.connect(connectionString).then(function() {
+//     app.listen(PORT, function() {
+//         console.log('Listening on Port ' + PORT);
+//     });
+// });
+
+app.listen(PORT, function() {
+    console.log('Listening on Port ' + PORT);
 });
