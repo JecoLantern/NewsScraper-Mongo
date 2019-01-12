@@ -11,7 +11,7 @@ html {
 }
 
 .response-section {
-    background: none rgba(255, 255, 255, 0.3);
+    background: none rgba(255, 255, 255, .3);
     height: 100%;
     padding-top: 40px;
     margin: 10px auto;
@@ -28,7 +28,7 @@ body {
 .page-header,
 footer {
     margin-top: 0;
-    background: none rgba(255, 255, 255, 0.4);
+    background: none rgba(255, 255, 255, .4);
 }
 
 footer {
@@ -54,6 +54,7 @@ img {
     display: flex;
     align-items: center;
     height: 78px;
+    max-width: 100%;
 }
 
 .buttons {
@@ -81,6 +82,10 @@ h1 {
 
 .container {
     width: 90%;
+}
+
+.card {
+    flex-direction: row
 }
 
 @media only screen and (max-width: 991px) {

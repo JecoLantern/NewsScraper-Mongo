@@ -1,26 +1,28 @@
 <main>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="news">
                 {{#each result}}
                     <div class="article container well">
                         <div class="row">
-                            <div class="col-md-9 article-info">
-                                <div class="article-name">
-                                    <a href="{{link}}"><h4>{{title}}</h4></a>
+                            <div class="card">
+                            <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 article-info">
+                                <div class="card-body article-name">
+                                    <a href="{{link}}"><h4 class="card-title">{{title}}</h4></a>
                                     {{#if author}}
-                                        <h4><small>By {{author}}</small></h4>
+                                        <h4 class="card-subtitle"><small>By {{author}}</small></h4>
                                     {{/if}}
-                                    <p>{{blurb}}</p>
+                                    <p class="card-text">{{blurb}}</p>
                                 </div>
                                 <div class="comment-link">
-                                    <a href="/{{articleID}}">Comments</a>
+                                    <a href="/{{articleID}}" class="card-link">Comments</a>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                 {{#if image}}
                                     <a href="{{link}}"><img src="{{image}}" class="center-block article-image"></a>
                                 {{/if}}
+                            </div>
                             </div>
                         </div>
                     </div>
