@@ -7,3 +7,6 @@ Serves the latest news from Vox. Made by JecoLantern.
 -express handlebars
 -mongoose
 -cheerio
+
+## Deployed Link
+https://mongo-news1-jba.herokuapp.com/
